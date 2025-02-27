@@ -1,0 +1,14 @@
+name: Scheduled Event
+
+on:
+  schedule:
+    - cron: "40 8 * * 2,4,6"
+
+jobs:
+  daily-greeting-to-gf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet gf
+        run: echo "Good Morning Hershey!"
+      
+    
