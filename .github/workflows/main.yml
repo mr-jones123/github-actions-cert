@@ -1,0 +1,22 @@
+name: Update Artifact
+on: 
+  push:
+    branches: github-actions-cert
+  issues:
+    types: [opened]
+jobs:
+  upload_artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow Logs
+        run: |
+          echo "Triggering Event: $GITHUB_EVENT_NAME" > event_data.txt
+          echo "Repository: $GITHUB_REPOSITORY" >> event_data.txt
+          echo "Ref: $GITHUB_REF" >> event_data.txt
+          echo "Commit SHA: $GITHUB_SHA" >> event_data.txt
+          echo "Timestamp: $(date)" >> event_data.txt
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uploaded_workflow_logs
+          path: event_data.txt
